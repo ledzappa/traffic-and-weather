@@ -1,5 +1,5 @@
 const Http = new XMLHttpRequest();
-const apiKey = "d2de489f04724cc29c9d855cef1051b1";
+const apiKey = "apikeyhere";
 let numberOfRequests = 0;
 let timerSet = false;
 let interval = null;
