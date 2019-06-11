@@ -1,4 +1,5 @@
 body {
+  margin: 0;
   background-color: #000;
   color: rgb(139, 39, 39);
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -19,8 +20,17 @@ h2 {
   margin: 2rem 0rem 0rem 0rem;
 }
 
-#content {
+#content-sl {
+  padding: 10px;
   font-size: 3rem;
+}
+
+#header {
+  background-color: #2185b5;
+  color: #fff;
+  width: 100%;
+  padding: 1rem;
+  margin-left: -10px;
 }
 
 button {
