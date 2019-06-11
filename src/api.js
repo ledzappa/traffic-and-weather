@@ -1,16 +1,16 @@
+
 const Http = new XMLHttpRequest();
 const Http2 = new XMLHttpRequest();
-const apiKeySL = "apiKeyHere";
-const apiKeyWeather = "apiKeyHere";
+
 let numberOfRequests = 0;
 let timerSet = false;
 let interval = null;
 let temp = 0;
 const url =
   "http://api.sl.se/api2/realtimedeparturesV4.json?key=" +
-  apiKeySL +
+  apiKeys.sl +
   "&siteid=1860&timewindow=60";
-const tempUrl = 'https://api.weather.com/v2/turbo/vt1observation?apiKey=' + apiKeyWeather + '&format=json&geocode=59.33%2C18.07&language=en-US&units=m';
+const tempUrl = 'https://api.weather.com/v2/turbo/vt1observation?apiKey=' + apiKeys.weather + '&format=json&geocode=59.33%2C18.07&language=en-US&units=m';
 
 start();
 
