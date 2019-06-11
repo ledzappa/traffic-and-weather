@@ -58,7 +58,7 @@ function start() {
 function isItFriday() {
   let d = new Date();
   let text = '';
-  if (d.getDay() === 2) {
+  if (d.getDay() === 5) {
     text = (temp > 15 ? 'OCH' : 'MEN' ) + ' DET ÄR FREDAG! :D :D :D';
   } else {
     text = 'Det är inte fredag :(';
