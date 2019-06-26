@@ -1,21 +1,47 @@
 body {
   margin: 0;
-  background-color: #000;
+  background-color: #407a80;
+  background-image: url("assets/fog-and-trees.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: local;
+  background-position: left top;
+  height: auto;
+  min-height: 100vh;
   color: rgb(139, 39, 39);
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
+body.bg-overlay::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+#last-update {
+  position: absolute;
+  right: 10px;
+}
+
 h1 {
-  font-size: 10rem;
+  font-size: 5rem;
   text-align: center;
-  color: yellow;
+  color: #ecec26;
+  text-shadow: 2px 2px 1px #000;
   margin: 0rem 0rem 0rem 0rem;
 }
 
 h2 {
-  color: #525252;
+  color: #fff;
   font-size: 3rem;
+  text-shadow: 2px 2px 1px #000;
   text-align: center;
   margin: 2rem 0rem 0rem 0rem;
 }
@@ -25,16 +51,32 @@ h2 {
   font-size: 3rem;
 }
 
-#header {
-  background-color: #2185b5;
+.header {
+  background-color: #000;
   color: #fff;
   width: 100%;
   padding: 1rem;
   margin-left: -10px;
 }
 
+.content h4 {
+  margin: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 button {
   margin-top: 2rem;
   font-size: 3rem;
   padding: 1rem;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: 10rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  padding: 1rem;
+  color: #fff;
 }
