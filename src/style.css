@@ -51,17 +51,25 @@ h2 {
   margin-top: 3rem;
 }
 
-#content-sl {
-  padding: 10px;
-  font-size: 3rem;
+#giphy {
+  height: 100%;
+  text-align: center;
+}
+
+#giphy img {
+  height: 100%;
 }
 
 .header {
   background-color: #000;
   color: #fff;
-  width: 100%;
   padding: 1rem;
   margin-left: -10px;
+}
+
+.content {
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .content h4 {
@@ -79,9 +87,17 @@ button {
 .footer {
   position: absolute;
   bottom: 0;
-  height: 10rem;
+  height: 17rem;
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
   padding: 1rem;
   color: #fff;
+  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 800px)  {
+  #gullmars, #alvsjo {
+    width: 50%;
+    display: inline-block;
+  }
 }

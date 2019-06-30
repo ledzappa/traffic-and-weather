@@ -1,7 +1,21 @@
-let numberOfRequests = 0;
+const Http = new XMLHttpRequest();
+const Http2 = new XMLHttpRequest();
+const Http3 = new XMLHttpRequest();
 let timerSet = false;
 let interval = null;
 let temp = 0;
+let d = new Date();
+let giphyResponse;
+const giphySearchTerms = [
+  ["sunday", "hangover", "chilling"],
+  ["monday"],
+  ["tuesday"],
+  ["wednesday"],
+  ["thursday"],
+  ["friday", "party", "beer"],
+  ["saturdays", "party", "beer"]
+];
+
 const trafficUrl =
   "http://api.sl.se/api2/realtimedeparturesV4.json?key=" +
   apiKeys.sl +
@@ -10,36 +24,15 @@ const temperatureUrl =
   "https://api.weather.com/v2/turbo/vt1observation?apiKey=" +
   apiKeys.weather +
   "&format=json&geocode=59.33%2C18.07&language=en-US&units=m";
-const Http = new XMLHttpRequest();
-const Http2 = new XMLHttpRequest();
-start();
-
-function getSLinfo() {
-  this.getTime();
-  // document.querySelector(".content").innerHTML = "Laddar ...";
-  Http.open("GET", trafficUrl);
-  Http.send();
-  numberOfRequests++;
-}
-
-function getTemp() {
-  document.getElementById("temp").innerHTML = "Laddar ...";
-  Http2.open("GET", temperatureUrl);
-  Http2.send();
-  numberOfRequests++;
-}
-
-function getHours() {
-  const d = new Date();
-  return d.getHours();
-}
 
 function start() {
   getSLinfo();
   getTemp();
+  getGiphy();
   getTime();
   isItFriday();
 
+  // update time and traffic info every 10s
   if (!interval) {
     interval = setInterval(function() {
       getSLinfo();
@@ -47,6 +40,7 @@ function start() {
     }, 10000);
   }
 
+  // clear timers after 10 min
   if (!timerSet) {
     timerSet = true;
     setTimeout(() => {
@@ -56,6 +50,47 @@ function start() {
       document.getElementById("content").innerHTML = "<h1>Uppdatera</h1>";
     }, 60000 * 10);
   }
+}
+
+function getSLinfo() {
+  this.getTime();
+  Http.open("GET", trafficUrl);
+  Http.send();
+}
+
+function getGiphy() {
+  const searchTermGroup = giphySearchTerms[d.getDay()];
+  const searchTerm =
+    searchTermGroup[Math.floor(Math.random() * searchTermGroup.length)];
+
+  const url =
+    "https://api.giphy.com/v1/gifs/search?api_key=" +
+    apiKeys.giphy +
+    "&q=" +
+    searchTerm +
+    "&limit=50&offset=0&rating=G&lang=en";
+  Http3.open("GET", url);
+  Http3.send();
+}
+
+function getRandomGiphyImage() {
+  let gif =
+    "https://media.giphy.com/media/" +
+    giphyResponse.data[Math.floor(Math.random() * giphyResponse.data.length)]
+      .id +
+    "/giphy.gif";
+  document.getElementById("giphy").innerHTML = "<img src='" + gif + "'>";
+}
+
+function getTemp() {
+  document.getElementById("temp").innerHTML = "Laddar ...";
+  Http2.open("GET", temperatureUrl);
+  Http2.send();
+}
+
+function getHours() {
+  const d = new Date();
+  return d.getHours();
 }
 
 function getTime() {
@@ -73,7 +108,6 @@ function isItFriday() {
     text = "Det är inte fredag :(";
   }
   document.getElementById("friday").innerHTML = text;
-  console.log(d.getDay());
 }
 
 function getTrafficTimes(array) {
@@ -110,3 +144,12 @@ Http2.onreadystatechange = e => {
       "<b>" + temp + "</b> jävla grader är det!";
   }
 };
+
+Http3.onreadystatechange = e => {
+  if (e.currentTarget.readyState == 4) {
+    giphyResponse = JSON.parse(Http3.responseText);
+    getRandomGiphyImage();
+  }
+};
+
+start();
