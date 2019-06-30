@@ -1,11 +1,6 @@
 const Http = new XMLHttpRequest();
 const Http2 = new XMLHttpRequest();
 const Http3 = new XMLHttpRequest();
-let timerSet = false;
-let interval = null;
-let temp = 0;
-let d = new Date();
-let giphyResponse;
 const giphySearchTerms = [
   ["sunday", "hangover", "chilling"],
   ["monday"],
@@ -15,7 +10,6 @@ const giphySearchTerms = [
   ["friday", "party", "beer"],
   ["saturdays", "party", "beer"]
 ];
-
 const trafficUrl =
   "http://api.sl.se/api2/realtimedeparturesV4.json?key=" +
   apiKeys.sl +
@@ -24,6 +18,12 @@ const temperatureUrl =
   "https://api.weather.com/v2/turbo/vt1observation?apiKey=" +
   apiKeys.weather +
   "&format=json&geocode=59.33%2C18.07&language=en-US&units=m";
+let timerSet = false;
+let interval = null;
+let temp = 0;
+let d = new Date();
+let giphyResponse;
+
 
 function start() {
   getSLinfo();
