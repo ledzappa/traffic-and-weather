@@ -1,6 +1,7 @@
-const Http = new XMLHttpRequest();
-const Http2 = new XMLHttpRequest();
-const Http3 = new XMLHttpRequest();
+const r1 = new XMLHttpRequest();
+const r2 = new XMLHttpRequest();
+const r3 = new XMLHttpRequest();
+const r4 = new XMLHttpRequest();
 const giphySearchTerms = [
   ["sunday", "hangover", "chilling"],
   ["monday"],
@@ -10,10 +11,12 @@ const giphySearchTerms = [
   ["friday", "party", "beer"],
   ["saturdays", "party", "beer"]
 ];
-const trafficUrl =
+const slRealtimeUrl =
   "http://api.sl.se/api2/realtimedeparturesV4.json?key=" +
-  apiKeys.sl +
+  apiKeys.slRealtime +
   "&siteid=1860&timewindow=60";
+const slDeviationsUrl =
+  "http://api.sl.se/api2/deviations.json?key=" + apiKeys.slDeviations + "&siteId=9529";
 const temperatureUrl =
   "https://api.weather.com/v2/turbo/vt1observation?apiKey=" +
   apiKeys.weather +
@@ -24,9 +27,9 @@ let temp = 0;
 let d = new Date();
 let giphyResponse;
 
-
 function start() {
-  getSLinfo();
+  getSLRealtime();
+  getSLDeviations();
   getTemp();
   getGiphy();
   getTime();
@@ -35,7 +38,7 @@ function start() {
   // update time and traffic info every 10s
   if (!interval) {
     interval = setInterval(function() {
-      getSLinfo();
+      getSLRealtime();
       getTime();
     }, 10000);
   }
@@ -52,10 +55,15 @@ function start() {
   }
 }
 
-function getSLinfo() {
+function getSLRealtime() {
   this.getTime();
-  Http.open("GET", trafficUrl);
-  Http.send();
+  r1.open("GET", slRealtimeUrl);
+  r1.send();
+}
+
+function getSLDeviations() {
+  r4.open("GET", slDeviationsUrl);
+  r4.send();
 }
 
 function getGiphy() {
@@ -68,9 +76,9 @@ function getGiphy() {
     apiKeys.giphy +
     "&q=" +
     searchTerm +
-    "&limit=50&offset=0&rating=G&lang=en";
-  Http3.open("GET", url);
-  Http3.send();
+    "&limit=50&offset=0&lang=en";
+  r3.open("GET", url);
+  r3.send();
 }
 
 function getRandomGiphyImage() {
@@ -84,8 +92,8 @@ function getRandomGiphyImage() {
 
 function getTemp() {
   document.getElementById("temp").innerHTML = "Laddar ...";
-  Http2.open("GET", temperatureUrl);
-  Http2.send();
+  r2.open("GET", temperatureUrl);
+  r2.send();
 }
 
 function getHours() {
@@ -123,9 +131,9 @@ function getTrafficTimes(array) {
   return output;
 }
 
-Http.onreadystatechange = e => {
+r1.onreadystatechange = e => {
   if (e.currentTarget.readyState == 4) {
-    let response = JSON.parse(Http.responseText);
+    const response = JSON.parse(r1.responseText);
     let buses = response.ResponseData.Buses;
     gullmars = buses.filter(obj => obj.Destination === "Gullmarsplan");
     alvsjo = buses.filter(obj => obj.Destination !== "Gullmarsplan");
@@ -136,19 +144,26 @@ Http.onreadystatechange = e => {
   }
 };
 
-Http2.onreadystatechange = e => {
+r2.onreadystatechange = e => {
   if (e.currentTarget.readyState == 4) {
-    let response = JSON.parse(Http2.responseText);
+    const response = JSON.parse(r2.responseText);
     temp = response.vt1observation.temperature;
     document.getElementById("temp").innerHTML =
       "<b>" + temp + "</b> jävla grader är det!";
   }
 };
 
-Http3.onreadystatechange = e => {
+r3.onreadystatechange = e => {
   if (e.currentTarget.readyState == 4) {
-    giphyResponse = JSON.parse(Http3.responseText);
+    giphyResponse = JSON.parse(r3.responseText);
     getRandomGiphyImage();
+  }
+};
+
+r4.onreadystatechange = e => {
+  if (e.currentTarget.readyState == 4) {
+    const response = JSON.parse(r4.responseText);
+    console.log(response);
   }
 };
 
