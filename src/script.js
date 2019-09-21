@@ -12,11 +12,11 @@ const giphySearchTerms = [
   ["saturdays", "party", "beer"]
 ];
 const slRealtimeUrl =
-  "http://api.sl.se/api2/realtimedeparturesV4.json?key=" +
+  "https://api.sl.se/api2/realtimedeparturesV4.json?key=" +
   apiKeys.slRealtime +
   "&siteid=1860&timewindow=60";
 const slDeviationsUrl =
-  "http://api.sl.se/api2/deviations.json?key=" + apiKeys.slDeviations + "&siteId=9529";
+  "https://api.sl.se/api2/deviations.json?key=" + apiKeys.slDeviations + "&siteId=9529";
 const temperatureUrl =
   "https://api.weather.com/v2/turbo/vt1observation?apiKey=" +
   apiKeys.weather +
