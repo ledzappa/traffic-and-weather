@@ -1,36 +1,25 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html class="no-js">
-  <!--<![endif]-->
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Test SL API</title>
+    <title>Traffic and Weather</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="bg-overlay">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
     <div class="header" onclick="start()">
-      <span id="temp"></span>
-      <span id="friday"></span>
-      <span id="last-update"></span>
+      <span id="output-temp"></span>
+      <span id="output-friday"></span>
+      <span id="output-last-update"></span>
     </div>
     <div class="content" onclick="start()">
-      <div id="gullmars"></div>
-      <div id="alvsjo"></div>
+      <div id="output-gullmars"></div>
+      <div id="output-alvsjo"></div>
     </div>
     <div class="footer">
-      <div id="giphy" onclick="getRandomGiphyImage()"></div>
+      <div id="output-giphy" onclick="getRandomGiphyImage()"></div>
     </div>
 
     <script src="apiKeys.js" async defer></script>

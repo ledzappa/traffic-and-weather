@@ -87,11 +87,11 @@ function getRandomGiphyImage() {
     giphyResponse.data[Math.floor(Math.random() * giphyResponse.data.length)]
       .id +
     "/giphy.gif";
-  document.getElementById("giphy").innerHTML = "<img src='" + gif + "'>";
+  document.getElementById("output-giphy").innerHTML = "<img src='" + gif + "'>";
 }
 
 function getTemp() {
-  document.getElementById("temp").innerHTML = "Laddar ...";
+  document.getElementById("output-temp").innerHTML = "Laddar ...";
   r2.open("GET", temperatureUrl);
   r2.send();
 }
@@ -103,7 +103,7 @@ function getHours() {
 
 function getTime() {
   const d = new Date();
-  document.getElementById("last-update").innerHTML =
+  document.getElementById("output-last-update").innerHTML =
     "Uppdaterad: " + d.toLocaleTimeString();
 }
 
@@ -115,7 +115,7 @@ function isItFriday() {
   } else {
     text = "Det är inte fredag :(";
   }
-  document.getElementById("friday").innerHTML = text;
+  document.getElementById("output-friday").innerHTML = text;
 }
 
 function getTrafficTimes(array) {
@@ -139,8 +139,8 @@ r1.onreadystatechange = e => {
     alvsjo = buses.filter(obj => obj.Destination !== "Gullmarsplan");
     gullmarsOutput = "<h2>Gullmarsplan</h2>" + getTrafficTimes(gullmars);
     alvsjoOutput = "<h2>Älvsjö</h2>" + getTrafficTimes(alvsjo);
-    document.getElementById("gullmars").innerHTML = gullmarsOutput;
-    document.getElementById("alvsjo").innerHTML = alvsjoOutput;
+    document.getElementById("output-gullmars").innerHTML = gullmarsOutput;
+    document.getElementById("output-alvsjo").innerHTML = alvsjoOutput;
   }
 };
 
@@ -148,7 +148,7 @@ r2.onreadystatechange = e => {
   if (e.currentTarget.readyState == 4) {
     const response = JSON.parse(r2.responseText);
     temp = response.vt1observation.temperature;
-    document.getElementById("temp").innerHTML =
+    document.getElementById("output-temp").innerHTML =
       "<b>" + temp + "</b> jävla grader är det!";
   }
 };
@@ -163,7 +163,6 @@ r3.onreadystatechange = e => {
 r4.onreadystatechange = e => {
   if (e.currentTarget.readyState == 4) {
     const response = JSON.parse(r4.responseText);
-    console.log(response);
   }
 };
 

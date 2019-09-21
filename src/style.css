@@ -25,11 +25,6 @@ body.bg-overlay::after {
   background: rgba(0, 0, 0, 0.35);
 }
 
-#last-update {
-  position: absolute;
-  right: 10px;
-}
-
 h1 {
   font-size: 5rem;
   text-align: center;
@@ -44,20 +39,6 @@ h2 {
   text-shadow: 2px 2px 1px #000;
   text-align: center;
   margin: 2rem 0rem 0rem 0rem;
-}
-
-#gullmars {
-  margin-bottom: 4rem;
-  margin-top: 3rem;
-}
-
-#giphy {
-  height: 100%;
-  text-align: center;
-}
-
-#giphy img {
-  height: 100%;
 }
 
 .header {
@@ -95,8 +76,28 @@ button {
   box-sizing: border-box;
 }
 
-@media only screen and (min-width: 800px)  {
-  #gullmars, #alvsjo {
+#output-last-update {
+  position: absolute;
+  right: 10px;
+}
+
+#output-gullmars {
+  margin-bottom: 4rem;
+  margin-top: 3rem;
+}
+
+#output-giphy {
+  height: 100%;
+  text-align: center;
+}
+
+#output-giphy img {
+  height: 100%;
+}
+
+@media only screen and (min-width: 800px) {
+  #output-gullmars,
+  #output-alvsjo {
     width: 50%;
     display: inline-block;
   }
