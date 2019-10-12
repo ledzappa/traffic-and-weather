@@ -11,12 +11,12 @@ const giphySearchTerms = [
   ["friday", "party", "beer"],
   ["saturdays", "party", "beer"]
 ];
-const slRealtimeUrl =
-  "https://api.sl.se/api2/realtimedeparturesV4.json?key=" +
-  apiKeys.slRealtime +
-  "&siteid=1860&timewindow=60";
-const slDeviationsUrl =
-  "https://api.sl.se/api2/deviations.json?key=" + apiKeys.slDeviations + "&siteId=9529";
+
+const apiKeys = {
+  weather: "d522aa97197fd864d36b418f39ebb323",
+  giphy: "In5JKoBFt0IN0Ylr1vDbtmPW1nIDNnbk"
+};
+
 const temperatureUrl =
   "https://api.weather.com/v2/turbo/vt1observation?apiKey=" +
   apiKeys.weather +
@@ -57,12 +57,12 @@ function start() {
 
 function getSLRealtime() {
   this.getTime();
-  r1.open("GET", slRealtimeUrl);
+  r1.open("GET", "/sl-real-time");
   r1.send();
 }
 
 function getSLDeviations() {
-  r4.open("GET", slDeviationsUrl);
+  r4.open("GET", "/sl-deviations");
   r4.send();
 }
 
