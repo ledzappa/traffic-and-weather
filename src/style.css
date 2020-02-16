@@ -8,7 +8,6 @@ body {
   background-position: left top;
   height: auto;
   min-height: 100vh;
-  color: rgb(139, 39, 39);
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -27,25 +26,12 @@ body.bg-overlay::after {
 
 h1 {
   font-size: 5rem;
-  text-align: center;
   color: #ecec26;
   text-shadow: 2px 2px 1px #000;
-  margin: 0rem 0rem 0rem 0rem;
 }
 
 h2 {
-  color: #fff;
-  font-size: 3rem;
   text-shadow: 2px 2px 1px #000;
-  text-align: center;
-  margin: 2rem 0rem 0rem 0rem;
-}
-
-.header {
-  background-color: #000;
-  color: #fff;
-  padding: 1rem;
-  margin-left: -10px;
 }
 
 .content {
@@ -59,12 +45,6 @@ h2 {
   color: rgba(255, 255, 255, 0.5);
 }
 
-button {
-  margin-top: 2rem;
-  font-size: 3rem;
-  padding: 1rem;
-}
-
 .footer {
   position: absolute;
   bottom: 0;
@@ -74,16 +54,6 @@ button {
   padding: 1rem;
   color: #fff;
   box-sizing: border-box;
-}
-
-#output-last-update {
-  position: absolute;
-  right: 10px;
-}
-
-#output-gullmars {
-  margin-bottom: 4rem;
-  margin-top: 3rem;
 }
 
 #output-giphy {

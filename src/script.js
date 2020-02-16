@@ -29,7 +29,7 @@ let giphyResponse;
 
 function start() {
   getSLRealtime();
-  getSLDeviations();
+  // getSLDeviations();
   getTemp();
   getGiphy();
   getTime();
@@ -123,7 +123,9 @@ function getTrafficTimes(array) {
   for (let [index, item] of array.entries()) {
     output +=
       index === 0
-        ? "<h1>" + item.DisplayTime + "</h1><h4>"
+        ? "<h1 class='text-center'>" +
+          item.DisplayTime +
+          "</h1><h4 class='text-center text-white-50'>"
         : item.DisplayTime +
           (index !== array.length - 1 ? "&nbsp;&nbsp;&nbsp;" : "");
   }
@@ -135,10 +137,12 @@ r1.onreadystatechange = e => {
   if (e.currentTarget.readyState == 4) {
     const response = JSON.parse(r1.responseText);
     let buses = response.ResponseData.Buses;
-    gullmars = buses.filter(obj => obj.Destination === "Gullmarsplan");
-    alvsjo = buses.filter(obj => obj.Destination !== "Gullmarsplan");
-    gullmarsOutput = "<h2>Gullmarsplan</h2>" + getTrafficTimes(gullmars);
-    alvsjoOutput = "<h2>Älvsjö</h2>" + getTrafficTimes(alvsjo);
+    gullmars = buses.filter(obj => obj.Destination === "Gullmarsplan").slice(0, 4);
+    alvsjo = buses.filter(obj => obj.Destination !== "Gullmarsplan").slice(0, 4);
+    gullmarsOutput =
+      "<h2 class='text-center mb-0'>Gullmarsplan</h2>" + getTrafficTimes(gullmars);
+    alvsjoOutput =
+      "<h2 class='text-center mb-0'>Älvsjö</h2>" + getTrafficTimes(alvsjo);
     document.getElementById("output-gullmars").innerHTML = gullmarsOutput;
     document.getElementById("output-alvsjo").innerHTML = alvsjoOutput;
   }
