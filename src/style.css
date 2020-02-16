@@ -15,7 +15,7 @@ body {
 body.bg-overlay::after {
   content: "";
   display: block;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
@@ -46,11 +46,9 @@ h2 {
 }
 
 .footer {
-  position: absolute;
   bottom: 0;
   height: 17rem;
   background-color: rgba(0, 0, 0, 0.2);
-  width: 100%;
   padding: 1rem;
   color: #fff;
   box-sizing: border-box;
